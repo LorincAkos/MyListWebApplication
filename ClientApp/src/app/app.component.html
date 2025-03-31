@@ -1,0 +1,25 @@
+<section>
+  <nav class="navbar">
+    <div class="navbar_container">
+      <a href="" id="navbar_logo">MyList</a>
+      <div class="navbar_toggle" id="mobile-menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+      <ul class="navbar_menu">
+        <li class="navbar_item">
+          <a routerLink="/home" routerLinkActive="active" ariaCurrentWhenActive="page" class="navbar_links">Home</a>
+        </li>
+        <li class="navbar_item">
+          <a routerLink="/anime-list" routerLinkActive="active" ariaCurrentWhenActive="page" class="navbar_links">Anime</a>
+        </li>
+        <li class="navbar_item">
+          <a routerLink="/manga-list" routerLinkActive="active" ariaCurrentWhenActive="page" class="navbar_links">Manga</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</section>
+
+<router-outlet />

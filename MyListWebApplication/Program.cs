@@ -23,10 +23,13 @@ namespace MyListWebApplication
             builder.Services.AddSingleton<MongoDbService>();
 
             builder.Services.AddTransient<IAnimeRepository, AnimeRepository>();
+            builder.Services.AddTransient<IStudioRepository, StudioRepository>();
 
             builder.Services.AddTransient<IAnimeService, AnimeService>();
+            builder.Services.AddTransient<IStudioService, StudioService>();
 
             builder.Services.AddAutoMapper(typeof(AnimeProfile));
+            builder.Services.AddAutoMapper(typeof(StudioProfile));
 
             var app = builder.Build();
 
