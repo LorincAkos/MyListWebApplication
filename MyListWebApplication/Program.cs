@@ -13,6 +13,14 @@ namespace MyListWebApplication
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAngular",
+                    policy => policy.WithOrigins("http://localhost:4200")
+                                    .AllowAnyMethod()  
+                                    .AllowAnyHeader()  
+                                    .AllowCredentials()); 
+            });
             // Add services to the container.
 
             builder.Services.AddControllers();
@@ -32,6 +40,8 @@ namespace MyListWebApplication
             builder.Services.AddAutoMapper(typeof(StudioProfile));
 
             var app = builder.Build();
+
+            app.UseCors("AllowAngular");
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())

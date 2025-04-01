@@ -16,5 +16,12 @@ namespace MyListWebApplication.Services
             List<AnimeDto> result = mapper.Map<List<AnimeDto>>(animes);
             return result;
         }
+
+        public AnimeDto Get(string id)
+        {
+            AnimeEntity anime = animeRepository.Get(id);
+            AnimeDto result = mapper.Map<AnimeDto>(anime);
+            return result;
+        }
     }
 }

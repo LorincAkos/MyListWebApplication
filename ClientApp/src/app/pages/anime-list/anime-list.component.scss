@@ -1,63 +1,113 @@
-.container{
-    display: flex;
+.container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     justify-content: space-between;
     background: greenyellow;
     padding: 0% 1%;
 }
-.card{
-    width: 33%;
+
+.card {
+    width: 95%;
+    margin: 3% 2%;
     background-color: #333;
-}
 
-.title{
-    display: flex;
-    justify-content: center;
-    padding: 5% 2%;
-    margin: 0px 10px 4px 10px;
-    border-bottom: black;
-    border-width: 0px 0px 2px 0px;
-    border-style: solid;
-}
+    &__title {
+        display: flex;
+        justify-content: center;
+        height: 60px;
+        margin: 0px 10px 4px 10px;
+        border-bottom: black;
+        border-width: 0px 0px 2px 0px;
+        border-style: solid;
 
-.title-link{
-    text-align: center;
-    font-weight: bold;
-    font-size: 24px;
-    color: #abc4ed;
-    text-decoration: none;
+        &--title-link {
+            text-align: center;
+            align-self: center;
+            font-weight: bold;
+            font-size: 24px;
+            color: #abc4ed;
+            text-decoration: none;
 
-    &:hover{
-        text-decoration: underline;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
     }
 }
 
-.image{
-    display: inline;
-    width: 50%;
-}
-img{
-    width: 100%;
-}
-.content-container{
+.content-container {
     display: flex;
     padding: 2% 3%;
-    
     height: auto;
-}
-.description{
-    display: inline;
-    background: #121212;
-    width: 50%;
-    color: white;
 
-    &--title{
-        font-weight: bold;
-        font-size: larger;
-        padding-bottom: 10px;
-        padding-left: 3%;
+    &__image {
+        display: inline;
+        width: 50%;
+        background: #2b2a2a;
+
+        img {
+            width: 100%;
+        }
+    }
+
+    &__description {
+        display: inline;
+        background: #2b2a2a;
+        width: 50%;
+        color: white;
+        height: 250px;
+        overflow: hidden;
+
+        &:hover {
+            overflow: auto;
+        }
+
+        &--title {
+            font-weight: bold;
+            font-size: larger;
+            padding-bottom: 10px;
+            padding-left: 3%;
+        }
+
+        &--preline {
+            padding-left: 5%;
+            height: 180px;
+        }
 
     }
-    &--preline{
-        padding-left: 5%;
+}
+
+.info-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding-bottom: 5%;
+
+    &--score {
+        text-align: center;
+        color: white;
+        font-weight: bold;
+        font-size: large;
+    }
+
+    &--status {
+        text-align: center;
+        color: white;
+        font-weight: bold;
+        font-size: large;
+    }
+
+    &--add {
+        background: rgb(0, 119, 255);
+        border: none;
+        border-radius: 20px;
+        width: 40%;
+        text-align: center;
+        justify-self: end;
+        margin-right: 15%;
+
+        &:hover {
+            background: rgb(0, 80, 170);
+            cursor: pointer;
+        }
     }
 }

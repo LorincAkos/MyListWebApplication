@@ -9,9 +9,14 @@ namespace MyListWebApplication.Repositories
     {
         private readonly IMongoCollection<AnimeEntity> Anime = mongoDbService.GetCollection<AnimeEntity>("Anime");
 
+
         public List<AnimeEntity> GetRange()
         {
             return Anime.Find(FilterDefinition<AnimeEntity>.Empty).ToList();
+        }
+        public AnimeEntity Get(string id)
+        {
+            return Anime.Find(Builders<AnimeEntity>.Filter.Eq(x => x.Id, id)).FirstOrDefault();
         }
     }
 }

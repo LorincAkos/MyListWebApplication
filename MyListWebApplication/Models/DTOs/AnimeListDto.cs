@@ -2,7 +2,7 @@
 
 namespace MyListWebApplication.Models.DTOs
 {
-    public class AnimeDto
+    public class AnimeListDto
     {
         public string Id { get; set; } = string.Empty;
         public string Premier { get; set; } = string.Empty;

@@ -1,46 +1,25 @@
 <div class="container">
+    @for (data of anime(); track data.id ){
     <div class="card">
-        <div class="title">
-            <a href="" class="title-link">Solo Leveling</a>
+        <div class="card__title">
+            <a [routerLink]="['/anime', data.id]" class="card__title--title-link">{{data.title}}</a>
         </div>
         <div class="content-container">
-        <div class="image">
-            <img src="https://cdn.myanimelist.net/images/anime/1448/147351.webp" alt="">
-        </div>
-            <div class="description">
-                <div class="description--title">Synopsis</div>
-                <div class="description--preline">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Soluta et tempore possimus cumque ab harum, necessitatibus quos iusto! Aliquam iusto corporis doloribus nisi nam rem.</div>
+            <a [routerLink]="['/anime', data.id]" class="content-container__image">
+                <img src={{data.imgUrl}} alt={{data.title}}>
+            </a>
+            <div class="content-container__description">
+                <div class="content-container__description--title">Synopsis</div>
+                <div class="content-container__description--preline">{{data.description}}</div>
+                <!-- <button class="content-container__description--more" [ngClass]="{'expanded': data.showMore}">{{data.showMore ? '--Less--' : '--More--'}}</button> -->
             </div>
         </div>
+        <div class="info-container">
+            <div class="info-container--score">&#9734;&nbsp;{{data.score}}</div>
+            <div class="info-container--status">Status: {{data.status}}</div>
+            <button class="info-container--add">Add</button>
+        </div>
     </div>
+    }
 
-    <div class="card">
-        <div class="title">
-            <a href="" class="title-link">Solo Leveling</a>
-        </div>
-        <div class="content-container">
-        <div class="image">
-            <img src="https://cdn.myanimelist.net/images/anime/1448/147351.webp" alt="">
-        </div>
-            <div class="description">
-                <div class="description--title">Synopsis</div>
-                <div class="description--preline">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Soluta et tempore possimus cumque ab harum, necessitatibus quos iusto! Aliquam iusto corporis doloribus nisi nam rem.</div>
-            </div>
-        </div>
-    </div>
-
-    <div class="card">
-        <div class="title">
-            <a href="" class="title-link">Solo Leveling</a>
-        </div>
-        <div class="content-container">
-        <div class="image">
-            <img src="https://cdn.myanimelist.net/images/anime/1448/147351.webp" alt="">
-        </div>
-            <div class="description">
-                <div class="description--title">Synopsis</div>
-                <div class="description--preline">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Soluta et tempore possimus cumque ab harum, necessitatibus quos iusto! Aliquam iusto corporis doloribus nisi nam rem.</div>
-            </div>
-        </div>
-    </div>
 </div>

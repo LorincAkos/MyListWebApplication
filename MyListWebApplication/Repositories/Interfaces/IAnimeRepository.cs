@@ -5,5 +5,6 @@ namespace MyListWebApplication.Repositories.Interfaces
     public interface IAnimeRepository
     {
         public List<AnimeEntity> GetRange();
+        public AnimeEntity Get(string id);
     }
 }
