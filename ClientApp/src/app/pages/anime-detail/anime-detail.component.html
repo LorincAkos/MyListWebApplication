@@ -1,10 +1,53 @@
 <div class="container">
     <div class="title">{{anime().title}}</div>
-    <div class="image">
-        <img src={{anime().imgUrl}} alt={{anime().title}}>
-    </div>
-    <div class="description">
-        <div class="description--title">Synopsis</div>
-        <div class="description--text">{{anime().description}}</div>
+    <div class="content">
+        <div class="left-side">
+            <div class="left-side__image">
+                <img src={{anime().imgUrl}} alt={{anime().title}}>
+            </div>
+            <div class="left-side__user">
+                <div class="left-side__user--title">Edit Status</div>
+                <div class="left-side__user--status">Status:</div>
+                <div class="left-side__user--episode">Episode seen:</div>
+                <div class="left-side__user--score">Your score:</div>
+            </div>
+            <div class="left-side__anime">
+                <div class="left-side__anime--title">Information</div>
+                <div class="left-side__anime--info">
+                    Episodes:
+                    <span>{{anime().episode}}</span>
+                </div>
+                <div class="left-side__anime--info">
+                    Status:
+                    <span>{{getStatusStringFromEnum(anime().status)}}</span>
+                </div>
+                <div class="left-side__anime--info">
+                    Aired:
+                    <span>{{anime().startDate}} to {{anime().endDate}}</span>
+                </div>
+                <div class="left-side__anime--info">
+                    Premiered:
+                    <span>{{anime().premier}}</span>
+                </div>
+                <div class="left-side__anime--info">
+                    Studio:
+                    <span>{{anime().studio}}</span>
+                </div>
+                <div class="left-side__anime--info">
+                    Genres:
+                    @for (genre of anime().genre; track $index) {
+                        <span>{{getGenreStringFromEnum(genre)}}</span>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <div class="right-side">
+            <div class="right-side__description">
+                <div class="right-side__description--title">Synopsis</div>
+                <div class="right-side__description--text">{{anime().description}}</div>
+            </div>
+            
+        </div>
     </div>
 </div>

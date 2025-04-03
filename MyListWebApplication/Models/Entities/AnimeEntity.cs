@@ -54,5 +54,8 @@ namespace MyListWebApplication.Models.Entities
 
         [BsonElement("source"), BsonRepresentation(BsonType.String)]
         public string Source { get; set; } = string.Empty;
+
+        [BsonElement("genre")]
+        public List<GenreType> Genre { get; set; } = [];
     }
 }

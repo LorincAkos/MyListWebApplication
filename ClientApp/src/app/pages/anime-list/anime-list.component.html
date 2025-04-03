@@ -4,6 +4,16 @@
         <div class="card__title">
             <a [routerLink]="['/anime', data.id]" class="card__title--title-link">{{data.title}}</a>
         </div>
+        <div class="start-info-container">
+            <div class="start-info-container--start">{{data.startDate}}</div>
+            <div class="start-info-container--episode">{{data.episode}} eps,</div>
+            <div class="start-info-container--duration">{{data.duration}} min</div>
+        </div>
+        <div class="genre-container">
+            @for (genre of data.genre; track $index) {
+                <div class="genre-container--genre">{{getGenreStringFromEnum(genre)}}</div>
+            }
+        </div>
         <div class="content-container">
             <a [routerLink]="['/anime', data.id]" class="content-container__image">
                 <img src={{data.imgUrl}} alt={{data.title}}>
@@ -16,8 +26,8 @@
         </div>
         <div class="info-container">
             <div class="info-container--score">&#9734;&nbsp;{{data.score}}</div>
-            <div class="info-container--status">Status: {{data.status}}</div>
-            <button class="info-container--add">Add</button>
+            <div class="info-container--status">Status: {{getStatusStringFromEnum(data.status)}}</div>
+            <button class="info-container--add" (click)="showAnimeStatus()">Add</button>
         </div>
     </div>
     }

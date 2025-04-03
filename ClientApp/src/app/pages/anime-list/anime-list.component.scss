@@ -34,32 +34,67 @@
         }
     }
 }
+.start-info-container{
+    display: flex;
+    justify-content: center;
+    color: gray;
+
+    &--start{
+        border-bottom: black;
+        border-width: 0px 1.5px 0px 0px;
+        border-style: solid;
+        padding-right: 5px;
+    }
+    &--episode{
+        padding-left: 5px;
+    }
+    &--duration{
+        padding-left: 5px;
+    }
+}
+
+.genre-container{
+    display: flex;
+    justify-content: center;
+    color: gray;
+
+    &--genre{
+        background-color: lightgray;
+        font-size: small;
+        border-radius: 5px;
+        padding: 0px 2px;
+        margin: 5px 5px 0px 5px;
+    }
+}
 
 .content-container {
     display: flex;
-    padding: 2% 3%;
+    padding: 2% 3% ;
     height: auto;
 
     &__image {
-        display: inline;
         width: 50%;
         background: #2b2a2a;
+        overflow: hidden;
 
         img {
             width: 100%;
+            height: 300px;
+            object-fit:fill;
+            
         }
     }
 
     &__description {
-        display: inline;
         background: #2b2a2a;
         width: 50%;
+        height: 240px;
         color: white;
-        height: 250px;
         overflow: hidden;
 
         &:hover {
             overflow: auto;
+            
         }
 
         &--title {
@@ -80,7 +115,7 @@
 .info-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    padding-bottom: 5%;
+    padding: 1% 0% 3% 0%;
 
     &--score {
         text-align: center;

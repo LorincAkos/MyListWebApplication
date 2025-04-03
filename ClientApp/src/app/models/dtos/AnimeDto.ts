@@ -1,3 +1,4 @@
+import { GenreType } from "../enums/GenreType";
 import { StatusType } from "../enums/StatusType";
 
 export class AnimeDto {
@@ -17,5 +18,6 @@ export class AnimeDto {
     prequel: string = '';
     sequel: string = '';
     source: string = '';
+    genre: Array<GenreType> = new Array<GenreType>;
     showMore: boolean = false;
 }

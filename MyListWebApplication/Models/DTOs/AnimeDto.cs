@@ -20,5 +20,6 @@ namespace MyListWebApplication.Models.DTOs
         public string Prequel { get; set; } = string.Empty;
         public string Sequel { get; set; } = string.Empty;
         public string Source { get; set; } = string.Empty;
+        public List<GenreType> Genre { get; set; } = [];
     }
 }
