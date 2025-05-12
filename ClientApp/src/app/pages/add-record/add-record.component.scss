@@ -1,0 +1,52 @@
+.container{
+    background-color: #333;
+
+    &__buttons{
+        display: flex;
+        justify-content: center;
+        padding: 20px 0px;
+
+        &--anime{
+            height: 40px;
+            width: 200px;
+            border: none;
+            border-radius: 15px 0px 0px 15px;
+            &:enabled{
+                background-color: gray;
+            }
+            &:disabled{
+                background-color: red;
+            }
+            &:hover{
+                cursor: pointer;
+            }
+        }
+        &--manga{
+            height: 40px;
+            width: 200px;
+            border: none;
+            border-radius: 0px 15px 15px 0px;
+
+            &:enabled{
+                background-color: gray;
+            }
+            &:disabled{
+                background-color: red;
+            }
+            &:hover{
+                cursor: pointer;
+            }
+        }
+    }
+
+    &__anime-data{
+        display: grid;
+        justify-content: center;
+
+        label{
+            color: white;
+            font-size: larger;
+            padding: 0px 15px 0px 0px;
+        }
+    }
+}

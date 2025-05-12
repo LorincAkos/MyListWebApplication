@@ -3,6 +3,7 @@ import { AnimeListComponent } from './pages/anime-list/anime-list.component';
 import { HomeComponent } from './pages/home/home.component';
 import { MangaListComponent } from './pages/manga-list/manga-list.component';
 import { AnimeDetailComponent } from './pages/anime-detail/anime-detail.component';
+import { AddRecordComponent } from './pages/add-record/add-record.component';
 
 export const routes: Routes = [
     { 
@@ -21,6 +22,10 @@ export const routes: Routes = [
     { 
         path: 'manga-list',
         component: MangaListComponent
+    },
+    { 
+        path: 'add-record',
+        component: AddRecordComponent
     },
     { 
         path: 'anime/:id', 

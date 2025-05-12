@@ -1,0 +1,38 @@
+<div class="container">
+    <div class="container__buttons">
+        <button class="container__buttons--anime" [disabled]=isAnime() (click)="changeRecordType()">Anime</button>
+        <button class="container__buttons--manga" [disabled]=!isAnime() (click)="changeRecordType()">Manga</button>
+    </div>
+
+    @if (isAnime()) {
+        <form [formGroup]="animeform" (ngSubmit)="onAnimeSubmit()" class="container__anime-data">
+            <label>Name:</label>
+            <input formControlName="name" />
+            @if (animeform.get('name')?.invalid && animeform.get('name')?.touched) 
+            {
+                Invalid name (only letters, 3–20 characters)
+            }
+
+            <label>Title:</label>
+            <input formControlName="title" />
+            @if (animeform.get('title')?.invalid && animeform.get('title')?.touched) 
+            {
+                Invalid title (alphanumeric, 3–50 characters)
+            }
+
+            <label>Description:</label>
+            <textarea formControlName="description"></textarea>
+            @if (animeform.get('description')?.invalid && animeform.get('description')?.touched) 
+            {
+                Invalid description (10–200 characters, basic punctuation allowed)
+            }
+
+  <button type="submit" [disabled]="animeform.invalid">Submit</button>
+</form>
+    }
+    @else {
+        <div>
+            <label for="">Manga</label>
+        </div>
+    }
+</div>

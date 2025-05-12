@@ -32,12 +32,15 @@ namespace MyListWebApplication
 
             builder.Services.AddTransient<IAnimeRepository, AnimeRepository>();
             builder.Services.AddTransient<IStudioRepository, StudioRepository>();
+            builder.Services.AddTransient<IUserRepository, UserRepository>();
 
             builder.Services.AddTransient<IAnimeService, AnimeService>();
             builder.Services.AddTransient<IStudioService, StudioService>();
+            builder.Services.AddTransient<IUserService, UserService>();
 
             builder.Services.AddAutoMapper(typeof(AnimeProfile));
             builder.Services.AddAutoMapper(typeof(StudioProfile));
+            builder.Services.AddAutoMapper(typeof(UserProfile));
 
             var app = builder.Build();
 
