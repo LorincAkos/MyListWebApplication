@@ -9,8 +9,8 @@ namespace MyListWebApplication.Models.DTOs
         public string Title { get; set; } = string.Empty;
         public string ImgUrl { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
-        public DateOnly StartDate { get; set; }
-        public DateOnly EndDate { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime? EndDate { get; set; }
         public double Score { get; set; }
         public StatusType Status { get; set; }
         public int Episode { get; set; }

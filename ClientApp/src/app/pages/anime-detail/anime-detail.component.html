@@ -1,5 +1,8 @@
 <div class="container">
-    <div class="title">{{anime().title}}</div>
+    <div class="title">
+        <span>{{anime().title}}</span>
+            <a class="title__edit-button" (click)="goToEditPage()">Edit</a>
+    </div>
     <div class="content">
         <div class="left-side">
             <div class="left-side__image">
@@ -23,7 +26,7 @@
                 </div>
                 <div class="left-side__anime--info">
                     Aired:
-                    <span>{{anime().startDate}} to {{anime().endDate}}</span>
+                    <span>{{shortDate(anime().startDate)}} to {{shortDate(anime().endDate)}}</span>
                 </div>
                 <div class="left-side__anime--info">
                     Premiered:
@@ -36,7 +39,7 @@
                 <div class="left-side__anime--info">
                     Genres:
                     @for (genre of anime().genre; track $index) {
-                        <span>{{getGenreStringFromEnum(genre)}}</span>
+                    <span>{{getGenreStringFromEnum(genre)}}, </span>
                     }
                 </div>
             </div>

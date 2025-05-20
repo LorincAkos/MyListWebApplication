@@ -1,0 +1,55 @@
+<div class="container">
+    <div class="title">
+        <span>{{manga().title}}</span>
+            <a class="title__edit-button" (click)="goToEditPage()">Edit</a>
+    </div>
+    <div class="content">
+        <div class="left-side">
+            <div class="left-side__image">
+                <img src={{manga().imgUrl}} alt={{manga().title}}>
+            </div>
+            <div class="left-side__user">
+                <div class="left-side__user--title">Edit Status</div>
+                <div class="left-side__user--status">Status:</div>
+                <div class="left-side__user--episode">Episode seen:</div>
+                <div class="left-side__user--score">Your score:</div>
+            </div>
+            <div class="left-side__anime">
+                <div class="left-side__anime--title">Information</div>
+                <div class="left-side__anime--info">
+                    Volumes:
+                    <span>{{manga().volume}}</span>
+                </div>
+                <div class="left-side__anime--info">
+                    Chapters:
+                    <span>{{manga().chapter}}</span>
+                </div>
+                <div class="left-side__anime--info">
+                    Status:
+                    <span>{{getStatusStringFromEnum(manga().status)}}</span>
+                </div>
+                <div class="left-side__anime--info">
+                    Aired:
+                    <span>{{shortDate(manga().startDate)}} to {{shortDate(manga().endDate)}}</span>
+                </div>
+                <div class="left-side__anime--info">
+                    Author:
+                    <span>{{manga().author}}</span>
+                </div>
+                <div class="left-side__anime--info">
+                    Genres:
+                    @for (genre of manga().genre; track $index) {
+                        <span>{{getGenreStringFromEnum(genre)}}, </span>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <div class="right-side">
+            <div class="right-side__description">
+                <div class="right-side__description--title">Synopsis</div>
+                <div class="right-side__description--text">{{manga().description}}</div>
+            </div>
+        </div>
+    </div>
+</div>

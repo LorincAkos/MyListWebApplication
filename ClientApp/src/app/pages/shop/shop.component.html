@@ -1,0 +1,85 @@
+<div class="container">
+    <div class="inventory">
+        @if (singleBookCollapsed) {
+            <button class="toggle-button" (click)="toogleSingleBook()">Show Single Books</button>
+        }
+        @else{
+            <button class="toggle-button" (click)="toogleSingleBook()">Hide Single Books</button>
+        }
+        @if (!singleBookCollapsed) {
+        <table>
+            <tr>
+                <th></th>
+                <th>Title</th>
+                <th>Volume</th>
+                <th>Price</th>
+                <th>Stock</th>
+                <th></th>
+            </tr>
+            @for (item of storageList(); track $index) {
+            <tr>
+                <td><img src={{item.imgUrl}} alt={{item.title}}></td>
+                <td>{{item.title}} </td>
+                <td>Vol. {{item.volume}}</td>
+                <td>{{item.price}} Ft</td>
+                <td>
+                    @if (item.count >= 10) {
+                        <span class="green">In stock</span>
+                    }
+                    @else if (item.count < 10 && item.count > 0) {
+                        <span class="yellow">Less than 10</span>
+                    }
+                    @else {
+                        <span class="red">Out of stock</span>
+                    }
+                </td>
+                <td>
+                    <button>Cart</button>
+                </td>
+            </tr>
+            }
+        </table>
+        }
+    </div>
+
+     <div class="inventory">
+        @if (bundleCollapsed) {
+            <button class="toggle-button" (click)="toogleBundle()">Show Bundles</button>
+        }
+        @else{
+            <button class="toggle-button" (click)="toogleBundle()">Hide Bundles</button>
+        }
+        @if (!bundleCollapsed) {
+        <table>
+            <tr>
+                <th></th>
+                <th>Title</th>
+                <th>Price</th>
+                <th>Stock</th>
+                <th></th>
+            </tr>
+            @for (item of bundleList(); track $index) {
+            <tr>
+                <td><img src={{item.imgUrl}} alt={{item.title}}></td>
+                <td>{{item.title}} </td>
+                <td>{{item.price}} Ft</td>
+                <td>
+                    @if (bundleIsAvaiable(item)) {
+                        <span class="green">In stock</span>
+                    }
+                    @else {
+                        <span class="red">Out of stock</span>
+                    }
+                </td>
+                <td>
+                    @if (bundleIsAvaiable(item)) {
+                        <button>Cart</button>
+                    }
+                    
+                </td>
+            </tr>
+            }
+        </table>
+        }
+    </div>
+</div>

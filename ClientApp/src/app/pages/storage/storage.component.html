@@ -1,0 +1,186 @@
+<div class="container">
+    <div class="container__buttons">
+        <button class="container__buttons--storage" [disabled]=isStorage()
+            (click)="changeRecordType()">Inventory</button>
+        <button class="container__buttons--new" [disabled]=!isStorage() (click)="changeRecordType()">Add new</button>
+    </div>
+
+    @if (isStorage()) {
+    <div class="inventory">
+        @if (singleBookCollapsed) {
+        <button class="toggle-button" (click)="toogleSingleBook()">Show Single Books</button>
+        }
+        @else{
+        <button class="toggle-button" (click)="toogleSingleBook()">Hide Single Books</button>
+        }
+
+        @if (!singleBookCollapsed) {
+        <table>
+            <tr>
+                <th></th>
+                <th>Title</th>
+                <th>Volume</th>
+                <th>Price</th>
+                <th>Count</th>
+                <th></th>
+            </tr>
+            @for (item of storageList(); track $index) {
+            <tr>
+                <td><img src={{item.imgUrl}} alt={{item.title}}></td>
+                <td>{{item.title}} </td>
+                <td>Vol. {{item.volume}}</td>
+                <td>{{item.price}} Ft</td>
+                <td>{{item.count}}</td>
+                <td>
+                    <button (click)="increaseCount(item)">+</button>
+                    <button (click)="decreaseCount(item)">-</button>
+                </td>
+            </tr>
+            }
+        </table>
+        }
+    </div>
+
+    <div class="inventory">
+        @if (bundleCollapsed) {
+        <button class="toggle-button" (click)="toogleBundle()">Show Bundles</button>
+        }
+        @else{
+        <button class="toggle-button" (click)="toogleBundle()">Hide Bundles</button>
+        }
+        @if (!bundleCollapsed) {
+        <table>
+            <tr>
+                <th></th>
+                <th>Title</th>
+                <th>Price</th>
+                <th></th>
+            </tr>
+            @for (item of bundleList(); track $index) {
+            <tr>
+                <td><img src={{item.imgUrl}} alt={{item.title}}></td>
+                <td>{{item.title}} </td>
+                <td>{{item.price}} Ft</td>
+                <td>
+                    <button (click)="increaseBundle(item)">+</button>
+                </td>
+            </tr>
+            }
+        </table>
+
+
+        @if (addbundle) {
+        <button class="toggle-button" (click)="toogleAdd()">Add Bundles</button>
+        }
+        @else{
+        <button class="toggle-button" (click)="toogleAdd()">Hide Bundles</button>
+        }
+
+        @if (!addbundle) {
+        <form [formGroup]="bundleform" (ngSubmit)="onBundleSubmit()" class="container__anime-data">
+            <div class="container__anime-data--field">
+                <label>Title:</label>
+                <mat-form-field class="full-width">
+                    <input type="text" matInput formControlName="title">
+                </mat-form-field>
+            </div>
+
+            <div class="container__anime-data--field">
+                <label>ImageUrl:</label>
+                <mat-form-field class="full-width">
+                    <input type="url" matInput formControlName="imgUrl">
+                </mat-form-field>
+            </div>
+
+            <div class="container__anime-data--field">
+                <label>Select books</label>
+                <mat-form-field>
+                    <mat-select [formControl]="bundleform.controls.books" multiple>
+                        @for (book of storageList(); track book.id) {
+                        <mat-option [value]="book.id">{{book.title}} Vol.{{book.volume}}</mat-option>
+                        }
+                    </mat-select>
+                    @if (bundleform.get('status')?.invalid && bundleform.get('status')?.touched) {
+                    <mat-error class="container__anime-data--invalid">Book is <strong>required</strong></mat-error>
+                    }
+                </mat-form-field>
+            </div>
+
+            <div class="container__anime-data--field">
+                <label>Price:</label>
+                <mat-form-field>
+                    <input matInput type="number" formControlName="price" min="0"
+                        (keydown)="blockForCharacters($event)">
+                    @if (storageform.get('price')?.invalid && storageform.get('price')?.touched) {
+                    <mat-error class="container__anime-data--invalid">Price is
+                        <strong>required</strong></mat-error>
+                    }
+                </mat-form-field>
+            </div>
+
+            <button type="submit" [disabled]="bundleform.invalid">Submit</button>
+        </form>
+        }
+        }
+    </div>
+
+    }
+    @else {
+    <form [formGroup]="storageform" (ngSubmit)="onMangaSubmit()" class="container__anime-data">
+        <div>
+            <label>Select Title</label>
+            <mat-form-field class="full-width">
+                <input type="text" placeholder="Pick one" aria-label="Adaptation" matInput
+                    [formControl]="storageform.controls.title" [matAutocomplete]="titleAuto">
+                <mat-autocomplete #titleAuto="matAutocomplete">
+                    @for (manga of titleOptions |async; track manga.id) {
+                    <mat-option [value]="manga.title"> {{manga.title}} </mat-option>
+                    }
+                </mat-autocomplete>
+            </mat-form-field>
+        </div>
+
+        <div class="container__anime-data--field">
+            <label>ImageUrl:</label>
+            <mat-form-field class="full-width">
+                <input type="url" matInput formControlName="imgUrl">
+            </mat-form-field>
+        </div>
+
+        <div class="container__anime-data--field">
+            <label>Volume number:</label>
+            <mat-form-field>
+                <input matInput type="number" formControlName="volume" min="0" (keydown)="blockForCharacters($event)">
+                @if (storageform.get('volume')?.invalid && storageform.get('volume')?.touched) {
+                <mat-error class="container__anime-data--invalid">Volume number is
+                    <strong>required</strong></mat-error>
+                }
+            </mat-form-field>
+        </div>
+
+        <div class="container__anime-data--field">
+            <label>Number of count:</label>
+            <mat-form-field>
+                <input matInput type="number" formControlName="count" min="0" (keydown)="blockForCharacters($event)">
+                @if (storageform.get('count')?.invalid && storageform.get('count')?.touched) {
+                <mat-error class="container__anime-data--invalid">Count is
+                    <strong>required</strong></mat-error>
+                }
+            </mat-form-field>
+        </div>
+
+        <div class="container__anime-data--field">
+            <label>Price:</label>
+            <mat-form-field>
+                <input matInput type="number" formControlName="price" min="0" (keydown)="blockForCharacters($event)">
+                @if (storageform.get('price')?.invalid && storageform.get('price')?.touched) {
+                <mat-error class="container__anime-data--invalid">Price is
+                    <strong>required</strong></mat-error>
+                }
+            </mat-form-field>
+        </div>
+
+        <button type="submit" [disabled]="storageform.invalid">Submit</button>
+    </form>
+    }
+</div>

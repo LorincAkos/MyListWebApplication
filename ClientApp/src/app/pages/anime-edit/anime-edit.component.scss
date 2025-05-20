@@ -1,0 +1,100 @@
+.container {
+    background-color: #333;
+}
+
+.anime-data {
+    display: grid;
+    background-color: #333;
+    justify-content: center;
+    width: 600px;
+    margin-left: 100px;
+
+    &--invalid {
+        font-size: large;
+    }
+
+    &--field {
+        padding-bottom: 15px;
+        width: 600px;
+
+        &_input {
+            width: 600px;
+            height: 30px;
+            font-size: large;
+        }
+
+        &_num-input {
+            width: 150px;
+            height: 30px;
+            font-size: large;
+        }
+
+        textarea {
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    &--field-d {
+        display: flex;
+        padding-bottom: 15px;
+
+        &_date {
+            display: grid;
+            width: 300px;
+
+            &--input {
+                width: 200px;
+                height: 30px;
+            }
+        }
+    }
+
+    label {
+        color: white;
+        font-size: larger;
+        padding: 0px 15px 0px 0px;
+    }
+}
+
+.full-width {
+    width: 100%;
+}
+
+.button-container {
+    display: flex;
+
+    &__save-button {
+        font-size: larger;
+        background: rgb(0, 119, 255);
+        border: none;
+        border-radius: 10px;
+        width: 160px;
+        height: 40px;
+        text-align: center;
+        justify-self: end;
+        margin-right: 30px;
+
+        &:hover {
+            background: rgb(0, 80, 170);
+            cursor: pointer;
+        }
+    }
+
+    &__delete-button {
+        font-size: larger;
+        background: rgb(255, 0, 0);
+        border: none;
+        border-radius: 10px;
+        width: 90px;
+        height: 40px;
+        text-align: center;
+        justify-self: end;
+        margin-right: 30px;
+
+        &:hover {
+            background: rgb(134, 1, 1);
+            cursor: pointer;
+        }
+    }
+}

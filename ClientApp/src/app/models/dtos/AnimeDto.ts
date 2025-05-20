@@ -7,8 +7,8 @@ export class AnimeDto {
     title: string = '';
     imgUrl: string = '';
     description: string = '';
-    startDate: Date = new Date();
-    endDate: Date = new Date();
+    startDate: string |undefined;
+    endDate: string |undefined;
     score: number = 0.00;
     status: StatusType = StatusType.Unknown;
     episode: number = 0;
@@ -19,5 +19,4 @@ export class AnimeDto {
     sequel: string = '';
     source: string = '';
     genre: Array<GenreType> = new Array<GenreType>;
-    showMore: boolean = false;
 }

@@ -1,0 +1,161 @@
+.container {
+    background-color: #333;
+    min-height: 1000px;
+    padding-bottom: 50px;
+
+    &__buttons {
+        display: flex;
+        justify-content: center;
+        padding: 20px 0px;
+
+        &--storage {
+            height: 40px;
+            width: 200px;
+            font-size: larger;
+            border: none;
+            border-radius: 15px 0px 0px 15px;
+
+            &:enabled {
+                background-color: gray;
+            }
+
+            &:disabled {
+                background-color: red;
+                color: white;
+            }
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
+        &--new {
+            height: 40px;
+            width: 200px;
+            font-size: larger;
+            border: none;
+            border-radius: 0px 15px 15px 0px;
+
+            &:enabled {
+                background-color: gray;
+            }
+
+            &:disabled {
+                background-color: red;
+                color: white;
+            }
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+
+    &__anime-data {
+        display: grid;
+        justify-content: center;
+        width: 600px;
+        margin-left: 100px;
+
+        &--invalid {
+            font-size: large;
+        }
+
+        &--field {
+            padding-bottom: 15px;
+            width: 600px;
+
+            &_input {
+                width: 600px;
+                height: 30px;
+                font-size: large;
+            }
+
+            &_num-input {
+                width: 150px;
+                height: 30px;
+                font-size: large;
+            }
+
+            textarea {
+                width: 100%;
+                height: 100%;
+            }
+        }
+
+        &--field-d {
+            display: flex;
+            padding-bottom: 15px;
+
+            &_date {
+                display: grid;
+                width: 300px;
+
+                &--input {
+                    width: 200px;
+                    height: 30px;
+                }
+            }
+        }
+
+        label {
+            color: white;
+            font-size: larger;
+            padding: 0px 15px 0px 0px;
+        }
+    }
+
+    .full-width {
+        width: 100%;
+    }
+
+}
+
+.inventory {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 40px;
+
+    .toggle-button {
+        background-color: #222222;
+        border: none;
+        width: 70%;
+        height: 40px;
+        color: white;
+        font-size: larger;
+
+        &:hover {
+            cursor: pointer;
+            color: #f77062;
+        }
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 70%;
+        color: white;
+
+        th {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #DDD;
+        }
+
+        td {
+            height: 30px;
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #DDD;
+        }
+
+        img {
+            height: 80px;
+        }
+
+        tr:hover {
+            background-color: #D6EEEE;
+        }
+
+    }
+}

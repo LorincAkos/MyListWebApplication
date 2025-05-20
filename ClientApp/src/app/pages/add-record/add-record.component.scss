@@ -1,52 +1,110 @@
-.container{
+.container {
     background-color: #333;
 
-    &__buttons{
+    &__buttons {
         display: flex;
         justify-content: center;
         padding: 20px 0px;
 
-        &--anime{
+        &--anime {
             height: 40px;
             width: 200px;
+            font-size: larger;
             border: none;
             border-radius: 15px 0px 0px 15px;
-            &:enabled{
+
+            &:enabled {
                 background-color: gray;
             }
-            &:disabled{
+
+            &:disabled {
                 background-color: red;
+                color: white;
             }
-            &:hover{
+
+            &:hover {
                 cursor: pointer;
             }
         }
-        &--manga{
+
+        &--manga {
             height: 40px;
             width: 200px;
+            font-size: larger;
             border: none;
             border-radius: 0px 15px 15px 0px;
 
-            &:enabled{
+            &:enabled {
                 background-color: gray;
             }
-            &:disabled{
+
+            &:disabled {
                 background-color: red;
+                color: white;
             }
-            &:hover{
+
+            &:hover {
                 cursor: pointer;
             }
         }
     }
 
-    &__anime-data{
+    &__anime-data {
         display: grid;
         justify-content: center;
+        width: 600px;
+        margin-left: 100px;
 
-        label{
+        &--invalid {
+            font-size: large;
+        }
+
+        &--field {
+            padding-bottom: 15px;
+            width: 600px;
+
+            &_input {
+                width: 600px;
+                height: 30px;
+                font-size: large;
+            }
+
+            &_num-input {
+                width: 150px;
+                height: 30px;
+                font-size: large;
+            }
+
+            textarea {
+                width: 100%;
+                height: 100%;
+            }
+        }
+
+        &--field-d {
+            display: flex;
+            padding-bottom: 15px;
+
+            &_date {
+                display: grid;
+                width: 300px;
+
+                &--input {
+                    width: 200px;
+                    height: 30px;
+                }
+            }
+        }
+
+        label {
             color: white;
             font-size: larger;
             padding: 0px 15px 0px 0px;
         }
     }
+
+    .full-width {
+        width: 100%;
+    }
+
 }

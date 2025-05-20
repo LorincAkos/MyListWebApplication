@@ -5,7 +5,7 @@
             <a [routerLink]="['/anime', data.id]" class="card__title--title-link">{{data.title}}</a>
         </div>
         <div class="start-info-container">
-            <div class="start-info-container--start">{{data.startDate}}</div>
+            <div class="start-info-container--start">{{shortDate(data.startDate)}}</div>
             <div class="start-info-container--episode">{{data.episode}} eps,</div>
             <div class="start-info-container--duration">{{data.duration}} min</div>
         </div>

@@ -30,7 +30,6 @@ export class AnimeListComponent implements OnInit, OnDestroy{
     .subscribe({
       next: (_anime) => {
         this.anime.set(_anime);
-        console.log(this.anime())
       }
     })
   }
@@ -50,5 +49,12 @@ export class AnimeListComponent implements OnInit, OnDestroy{
 
   showAnimeStatus(){
     this.popupService.openPopUp();
+  }
+
+  shortDate(date: string | undefined): string{
+    if(date){
+      return date.toString().slice(0,10);
+    }
+    return "Unknown";
   }
 }

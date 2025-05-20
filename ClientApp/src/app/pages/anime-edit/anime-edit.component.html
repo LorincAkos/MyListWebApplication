@@ -1,0 +1,183 @@
+<div class="container">
+    @if(anime){
+    <form [formGroup]="animeform" (ngSubmit)="onAnimeSubmit()" class="anime-data">
+        <div class="anime-data--field">
+            <label>Title:</label>
+            <mat-form-field class="full-width">
+                <input type="url" matInput formControlName="title">
+                @if (animeform.get('title')?.invalid && animeform.get('title')?.touched) {
+                <mat-error class="anime-data--invalid">Title is <strong>required</strong></mat-error>
+                }
+            </mat-form-field>
+        </div>
+
+        <div class="anime-data--field">
+            <label>ImageUrl:</label>
+            <mat-form-field class="full-width">
+                <input type="url" matInput formControlName="imgUrl">
+            </mat-form-field>
+        </div>
+
+        <div class="anime-data--field">
+            <label>Description:</label>
+            <mat-form-field class="full-width">
+                <textarea matInput formControlName="description"></textarea>
+            </mat-form-field>
+        </div>
+
+        <div class="anime-data--field-d">
+            <div class="anime-data--field-d_date">
+                <label>Start Date:</label>
+                <mat-form-field>
+                    <mat-label>Choose a date</mat-label>
+                    <input matInput [matDatepicker]="startDatePicker" formControlName="sd">
+                    <mat-datepicker-toggle matIconSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+                    <mat-datepicker #startDatePicker></mat-datepicker>
+                </mat-form-field>
+            </div>
+            <div class="anime-data--field-d_date">
+                <label>End Date:</label>
+                <mat-form-field>
+                    <mat-label>Choose a date</mat-label>
+                    <input matInput [matDatepicker]="endDatePicker" formControlName="ed">
+                    <mat-datepicker-toggle matIconSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+                    <mat-datepicker #endDatePicker></mat-datepicker>
+                </mat-form-field>
+            </div>
+        </div>
+
+
+
+        <div class="anime-data--field">
+            <label>Score:</label>
+            <mat-form-field>
+                <input matInput type="number" formControlName="score" step="any" min="0" (input)="limitScore($event)"
+                    (keydown)="blockForScore($event)">
+            </mat-form-field>
+        </div>
+
+        <div class="anime-data--field">
+            <label>Select genre(s)</label>
+            <mat-form-field>
+                <mat-select [formControl]="animeform.controls.genre" multiple>
+                    @for (genre of genres; track genre) {
+                    <mat-option [value]="genre.value">{{genre.label}}</mat-option>
+                    }
+                </mat-select>
+                @if (animeform.get('genre')?.invalid && animeform.get('genre')?.touched) {
+                <mat-error class="anime-data--invalid">Genre is <strong>required</strong></mat-error>
+                }
+            </mat-form-field>
+        </div>
+
+        <div class="anime-data--field">
+            <label>Number of episodes:</label>
+            <mat-form-field>
+                <input matInput type="number" formControlName="episodeNum" min="0" (keydown)="blockForEpisode($event)">
+                @if (animeform.get('episodeNum')?.invalid && animeform.get('episodeNum')?.touched) {
+                <mat-error class="anime-data--invalid">Episode number is
+                    <strong>required</strong></mat-error>
+                }
+            </mat-form-field>
+        </div>
+
+        <div class="anime-data--field">
+            <label>Duration of episodes:</label>
+            <mat-form-field>
+                <input matInput type="number" formControlName="episodeDur" min="0" (keydown)="blockForEpisode($event)">
+                @if (animeform.get('episodeDur')?.invalid && animeform.get('episodeDur')?.touched) {
+                <mat-error class="anime-data--invalid">Episode duration is
+                    <strong>required</strong></mat-error>
+                }
+            </mat-form-field>
+        </div>
+
+        <div class="anime-data--field">
+            <label>Select status</label>
+            <mat-form-field>
+                <mat-select [formControl]="animeform.controls.status" [value]="statuses[anime.status].value">
+                    @for (status of statuses; track status) {
+                    <mat-option [value]="status.value">{{status.label}}</mat-option>
+                    }
+                </mat-select>
+                @if (animeform.get('status')?.invalid && animeform.get('status')?.touched) {
+                <mat-error class="anime-data--invalid">Status is <strong>required</strong></mat-error>
+                }
+            </mat-form-field>
+        </div>
+
+        <div class="anime-data--field">
+            <label>Select studio</label>
+            <mat-form-field>
+                <mat-select [formControl]="animeform.controls.studio">
+                    @for (studio of studioSelection(); track studio.id) {
+                    <mat-option [value]="studio.id">{{studio.name}}</mat-option>
+                    }
+                </mat-select>
+                @if (animeform.get('status')?.invalid && animeform.get('status')?.touched) {
+                <mat-error class="anime-data--invalid">Studio is <strong>required</strong></mat-error>
+                }
+            </mat-form-field>
+        </div>
+
+        <div class="anime-data--field">
+            <label>Select Rating</label>
+            <mat-form-field>
+                <mat-select [formControl]="animeform.controls.rating">
+                    @for (rating of ratings; track rating) {
+                    <mat-option [value]="rating.label">{{rating.label}}</mat-option>
+                    }
+                </mat-select>
+                @if (animeform.get('rating')?.invalid && animeform.get('rating')?.touched) {
+                <mat-error class="anime-data--invalid">Rating is <strong>required</strong></mat-error>
+                }
+            </mat-form-field>
+        </div>
+
+        <div>
+            <label>Select Prequel</label>
+            <mat-form-field class="full-width">
+                <input type="text" placeholder="Pick one" aria-label="Prequel" matInput
+                    [formControl]="animeform.controls.prequel" [matAutocomplete]="prequelAuto">
+                <mat-autocomplete #prequelAuto="matAutocomplete" [displayWith]="displayAnimeTitle">
+                    @for (anime of prequelOptions |async; track anime.id) {
+                    <mat-option [value]="anime.id">{{anime.title}}</mat-option>
+                    }
+                </mat-autocomplete>
+            </mat-form-field>
+        </div>
+
+        <div>
+            <label>Select Sequel</label>
+            <mat-form-field class="full-width">
+                <input type="text" placeholder="Pick one" aria-label="Sequel" matInput
+                    [formControl]="animeform.controls.sequel" [matAutocomplete]="sequelAuto">
+                <mat-autocomplete #sequelAuto="matAutocomplete" [displayWith]="displayAnimeTitle">
+                    @for (anime of sequelOptions |async; track anime.id) {
+                    <mat-option [value]="anime.id"> {{anime.title}} </mat-option>
+                    }
+                </mat-autocomplete>
+            </mat-form-field>
+        </div>
+
+        <div>
+            <label>Select Source</label>
+            <mat-form-field class="full-width">
+                <input type="text" placeholder="Pick one" aria-label="Sequel" matInput
+                    [formControl]="animeform.controls.source" [matAutocomplete]="sourceAuto">
+                <mat-autocomplete #sourceAuto="matAutocomplete" [displayWith]="displayMangaTitle">
+                    @for (manga of sourceOptions |async; track manga.id) {
+                    <mat-option [value]="manga.id"> {{manga.title}} </mat-option>
+                    }
+                </mat-autocomplete>
+            </mat-form-field>
+        </div>
+
+        <div class="button-container">
+            <button type="submit" class="button-container__save-button" [disabled]="animeform.invalid">Save changes</button>
+            <button type="button" class="button-container__delete-button" (click)="onDelete()">Delete</button>
+        </div>
+    </form>
+    }
+    <button (click)="test()">Test</button>
+</div>

@@ -13,5 +13,6 @@ namespace MyListWebApplication.Repositories
         {
             return Studio.Find(FilterDefinition<StudioEntity>.Empty).ToList();
         }
+
     }
 }

@@ -6,5 +6,8 @@ namespace MyListWebApplication.Repositories.Interfaces
     {
         public List<AnimeEntity> GetRange();
         public AnimeEntity Get(string id);
+        public void Add(AnimeEntity anime);
+        public void Update(string id, AnimeEntity entity);
+        public bool Delete(string id);
     }
 }

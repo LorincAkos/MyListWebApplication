@@ -6,5 +6,6 @@ namespace MyListWebApplication.Services.Interfaces
     public interface IStudioService
     {
         public List<StudioDto> GetRange();
+        public List<StudioSelectDto> GetSelection();
     }
 }

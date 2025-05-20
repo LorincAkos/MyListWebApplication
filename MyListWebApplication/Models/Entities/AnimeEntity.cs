@@ -23,10 +23,10 @@ namespace MyListWebApplication.Models.Entities
         public string Description { get; set; } = string.Empty;
 
         [BsonElement("start"), BsonRepresentation(BsonType.DateTime)]
-        public DateOnly StartDate { get; set; }
+        public DateTime StartDate { get; set; }
 
         [BsonElement("end"), BsonRepresentation(BsonType.DateTime)]
-        public DateOnly EndDate { get; set; }
+        public DateTime? EndDate { get; set; }
 
         [BsonElement("score"), BsonRepresentation(BsonType.Double)]
         public double Score { get; set; }

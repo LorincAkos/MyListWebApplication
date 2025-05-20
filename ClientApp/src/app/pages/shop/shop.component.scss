@@ -1,0 +1,66 @@
+.container {
+    background-color: #333;
+    min-height: 1000px;
+    padding-bottom: 100px;
+}
+
+.inventory {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 40px;
+
+    .toggle-button {
+        background-color: #222222;
+        border: none;
+        width: 70%;
+        height: 40px;
+        color: white;
+        font-size: larger;
+
+        &:hover {
+            cursor: pointer;
+            color: #f77062;
+        }
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 70%;
+        color: white;
+
+        th {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #DDD;
+        }
+
+        td {
+            height: 30px;
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #DDD;
+        }
+
+        img {
+            height: 80px;
+        }
+
+        tr:hover {
+            background-color: #D6EEEE;
+        }
+
+    }
+}
+
+.green{
+    color: green;
+}
+
+.yellow{
+    color: orange;
+}
+
+.red{
+    color: red;
+}

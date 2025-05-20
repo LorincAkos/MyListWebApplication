@@ -8,7 +8,10 @@ namespace MyListWebApplication.Profiles
     {
         public AnimeProfile()
         {
-            CreateMap<AnimeEntity, AnimeDto>();
+            CreateMap<AnimeEntity, AnimeDto>()
+                .ForMember(dest => dest.StartDate,
+                    opt => opt.MapFrom(src => src.StartDate.ToLocalTime().ToString("yyyy-MM-dd"))); ;
+            CreateMap<AnimeDto, AnimeEntity>();
         }
     }
 }

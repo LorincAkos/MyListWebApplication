@@ -14,6 +14,13 @@ namespace MyListWebApplication.Services
             List<StudioDto> result = mapper.Map<List<StudioDto>>(studios);
             return result;
         }
+
+        public List<StudioSelectDto> GetSelection()
+        {
+            List<StudioEntity> studios = studioRepository.GetRange();
+            List<StudioSelectDto> result = mapper.Map<List<StudioSelectDto>>(studios);
+            return result;
+        }
     }
     
 }
