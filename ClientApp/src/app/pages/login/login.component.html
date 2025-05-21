@@ -1,0 +1,70 @@
+<div class="container">
+  <div class="container__buttons">
+    <button class="container__buttons--login" [disabled]=isLogin() (click)="changeRecordType()">Login</button>
+    <button class="container__buttons--register" [disabled]=!isLogin() (click)="changeRecordType()">Register</button>
+  </div>
+
+  @if (isLogin()) {
+  <form [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()" class="container__anime-data">
+    <div class="container__anime-data--field">
+      <label>UserName:</label>
+      <mat-form-field class="full-width">
+        <input type="text" matInput formControlName="username">
+        @if (loginForm.get('username')?.invalid && loginForm.get('username')?.touched) {
+        <mat-error class="container__anime-data--invalid">Username is
+          <strong>required</strong></mat-error>
+        }
+      </mat-form-field>
+    </div>
+
+    <div class="container__anime-data--field">
+      <label>Password:</label>
+      <mat-form-field class="full-width">
+        <input type="text" matInput formControlName="password">
+        @if (loginForm.get('password')?.invalid && loginForm.get('password')?.touched) {
+        <mat-error class="container__anime-data--invalid">Password is
+          <strong>required</strong></mat-error>
+        }
+      </mat-form-field>
+    </div>
+    <button type="submit" [disabled]="loginForm.invalid" class="toggle-button">Login</button>
+  </form>
+  }
+  @else {
+  <form [formGroup]="registerForm" (ngSubmit)="onRegisterSubmit()" class="container__anime-data">
+    <div class="container__anime-data--field">
+      <label>UserName:</label>
+      <mat-form-field class="full-width">
+        <input type="text" matInput formControlName="username">
+        @if (registerForm.get('username')?.invalid && registerForm.get('username')?.touched) {
+        <mat-error class="container__anime-data--invalid">Username is
+          <strong>required</strong></mat-error>
+        }
+      </mat-form-field>
+    </div>
+
+    <div class="container__anime-data--field">
+      <label>Password:</label>
+      <mat-form-field class="full-width">
+        <input type="text" matInput formControlName="password">
+        @if (registerForm.get('password')?.invalid && registerForm.get('password')?.touched) {
+        <mat-error class="container__anime-data--invalid">Password is
+          <strong>required</strong></mat-error>
+        }
+      </mat-form-field>
+    </div>
+
+    <div class="container__anime-data--field">
+      <label>Email:</label>
+      <mat-form-field class="full-width">
+        <input type="email" matInput formControlName="email">
+        @if (registerForm.get('email')?.invalid && registerForm.get('email')?.touched) {
+        <mat-error class="container__anime-data--invalid">Email is
+          <strong>required</strong></mat-error>
+        }
+      </mat-form-field>
+    </div>
+    <button type="submit" [disabled]="registerForm.invalid" class="toggle-button">Register</button>
+  </form>
+  }
+</div>

@@ -12,20 +12,36 @@
           <a routerLink="/home" routerLinkActive="active" ariaCurrentWhenActive="page" class="navbar_links">Home</a>
         </li>
         <li class="navbar_item">
-          <a routerLink="/anime-list" routerLinkActive="active" ariaCurrentWhenActive="page" class="navbar_links">Anime</a>
+          <a routerLink="/anime-list" routerLinkActive="active" ariaCurrentWhenActive="page"
+            class="navbar_links">Anime</a>
         </li>
         <li class="navbar_item">
-          <a routerLink="/manga-list" routerLinkActive="active" ariaCurrentWhenActive="page" class="navbar_links">Manga</a>
+          <a routerLink="/manga-list" routerLinkActive="active" ariaCurrentWhenActive="page"
+            class="navbar_links">Manga</a>
         </li>
         <li class="navbar_item">
           <a routerLink="/shop" routerLinkActive="active" ariaCurrentWhenActive="page" class="navbar_links">Shop</a>
         </li>
+        @if (authService.isAdmin()) {
         <li class="navbar_item">
-          <a routerLink="/add-record" routerLinkActive="active" ariaCurrentWhenActive="page" class="navbar_links">+Add</a>
+          <a routerLink="/add-record" routerLinkActive="active" ariaCurrentWhenActive="page"
+            class="navbar_links">+Add</a>
         </li>
         <li class="navbar_item">
-          <a routerLink="/storage" routerLinkActive="active" ariaCurrentWhenActive="page" class="navbar_links">Storage</a>
+          <a routerLink="/storage" routerLinkActive="active" ariaCurrentWhenActive="page"
+            class="navbar_links">Storage</a>
         </li>
+      }
+        @if(!authService.isLoggedIn()){
+        <li class="navbar_item">
+          <a routerLink="/login" routerLinkActive="active" ariaCurrentWhenActive="page" class="navbar_links">Login</a>
+        </li>
+        }
+        @else {
+          <li class="navbar_item">
+            <a routerLink="/profile" routerLinkActive="active" ariaCurrentWhenActive="page" class="navbar_links">Profile</a>
+          </li>
+        }
       </ul>
     </div>
   </nav>

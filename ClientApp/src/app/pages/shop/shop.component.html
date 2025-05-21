@@ -1,10 +1,20 @@
 <div class="container">
+
+    @if (this.authService.isLoggedIn()) {
+
+        <div class="container__cart">
+            <button type="button" (click)="toCart()">
+                Cart
+            </button>
+        </div>
+    }
+
     <div class="inventory">
         @if (singleBookCollapsed) {
-            <button class="toggle-button" (click)="toogleSingleBook()">Show Single Books</button>
+        <button class="toggle-button" (click)="toogleSingleBook()">Show Single Books</button>
         }
         @else{
-            <button class="toggle-button" (click)="toogleSingleBook()">Hide Single Books</button>
+        <button class="toggle-button" (click)="toogleSingleBook()">Hide Single Books</button>
         }
         @if (!singleBookCollapsed) {
         <table>
@@ -23,18 +33,22 @@
                 <td>Vol. {{item.volume}}</td>
                 <td>{{item.price}} Ft</td>
                 <td>
-                    @if (item.count >= 10) {
-                        <span class="green">In stock</span>
+                    @if (cartService.canAddStingleItemToCart(item.id, storageList(), cartService.getOrder(), bundleList()) >= 10) {
+                    <span class="green">In stock</span>
                     }
-                    @else if (item.count < 10 && item.count > 0) {
+                    @else if (cartService.canAddStingleItemToCart(item.id, storageList(), cartService.getOrder(), bundleList()) < 10 &&
+                     cartService.canAddStingleItemToCart(item.id, storageList(), cartService.getOrder(), bundleList())> 0) {
                         <span class="yellow">Less than 10</span>
-                    }
-                    @else {
+                        }
+                        @else {
                         <span class="red">Out of stock</span>
-                    }
+                        }
                 </td>
                 <td>
-                    <button>Cart</button>
+                    @if (item.count > 0) {
+                    <button (click)="singleBookToCart(item)"
+                    [disabled]="cartService.canAddStingleItemToCart(item.id, storageList(), cartService.getOrder(), bundleList()) < 1">Cart</button>
+                    }
                 </td>
             </tr>
             }
@@ -42,12 +56,12 @@
         }
     </div>
 
-     <div class="inventory">
+    <div class="inventory">
         @if (bundleCollapsed) {
-            <button class="toggle-button" (click)="toogleBundle()">Show Bundles</button>
+        <button class="toggle-button" (click)="toogleBundle()">Show Bundles</button>
         }
         @else{
-            <button class="toggle-button" (click)="toogleBundle()">Hide Bundles</button>
+        <button class="toggle-button" (click)="toogleBundle()">Hide Bundles</button>
         }
         @if (!bundleCollapsed) {
         <table>
@@ -64,18 +78,18 @@
                 <td>{{item.title}} </td>
                 <td>{{item.price}} Ft</td>
                 <td>
-                    @if (bundleIsAvaiable(item)) {
-                        <span class="green">In stock</span>
+                    @if (cartService.canAddBundle(item, storageList(), cartService.getOrder(), bundleList())) {
+                    <span class="green">In stock</span>
                     }
                     @else {
-                        <span class="red">Out of stock</span>
+                    <span class="red">Out of stock</span>
                     }
                 </td>
                 <td>
-                    @if (bundleIsAvaiable(item)) {
-                        <button>Cart</button>
-                    }
+                    <button (click)="bundleToCart(item)"
+                        [disabled]="!cartService.canAddBundle(item, storageList(), cartService.getOrder(), bundleList())">Cart</button>
                     
+
                 </td>
             </tr>
             }

@@ -9,9 +9,9 @@ namespace MyListWebApplication.Repositories
     {
 
         private readonly IMongoCollection<UserEntity> Users = mongoDbService.GetCollection<UserEntity>("User");
-        public UserEntity Get(string email, string password)
+        public UserEntity Get(string name, string password)
         {
-            return Users.Find(user => user.Email == email && user.Password == password).FirstOrDefault();
+            return Users.Find(user => user.UserName == name && user.Password == password).FirstOrDefault();
 
         }
     }

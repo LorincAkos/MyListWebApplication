@@ -6,6 +6,8 @@ using MyListWebApplication.Services;
 using MyListWebApplication.Services.Interfaces;
 using Microsoft.AspNetCore.Http.Json;
 using System.Text.Json.Serialization;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 
 namespace MyListWebApplication
@@ -52,6 +54,8 @@ namespace MyListWebApplication
             builder.Services.AddTransient<IBundleService, BundleService>();
             builder.Services.AddTransient<IStudioService, StudioService>();
             builder.Services.AddTransient<IUserService, UserService>();
+            builder.Services.AddScoped<OrderService>();
+
 
             builder.Services.AddAutoMapper(typeof(AnimeProfile));
             builder.Services.AddAutoMapper(typeof(AnimeSelectProfile));
@@ -62,6 +66,22 @@ namespace MyListWebApplication
             builder.Services.AddAutoMapper(typeof(StudioProfile));
             builder.Services.AddAutoMapper(typeof(StudioSelectProfile));
             builder.Services.AddAutoMapper(typeof(UserProfile));
+
+            // JWT Authentication
+            builder.Services.AddAuthentication("Bearer")
+                .AddJwtBearer("Bearer", options =>
+                {
+                    var key = builder.Configuration["Jwt:Key"];
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidateIssuerSigningKey = true,
+                        ValidIssuer = builder.Configuration["Jwt:Issuer"],
+                        ValidAudience = builder.Configuration["Jwt:Issuer"],
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key))
+                    };
+                });
 
             var app = builder.Build();
 
@@ -76,6 +96,7 @@ namespace MyListWebApplication
 
             app.UseHttpsRedirection();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
 

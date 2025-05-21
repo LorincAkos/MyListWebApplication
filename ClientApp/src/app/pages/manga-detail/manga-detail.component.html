@@ -1,7 +1,10 @@
 <div class="container">
     <div class="title">
         <span>{{manga().title}}</span>
+        @if (authService.isAdmin()) {
             <a class="title__edit-button" (click)="goToEditPage()">Edit</a>
+        }
+        
     </div>
     <div class="content">
         <div class="left-side">
@@ -39,7 +42,7 @@
                 <div class="left-side__anime--info">
                     Genres:
                     @for (genre of manga().genre; track $index) {
-                        <span>{{getGenreStringFromEnum(genre)}}, </span>
+                    <span>{{getGenreStringFromEnum(genre)}}, </span>
                     }
                 </div>
             </div>

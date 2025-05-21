@@ -7,6 +7,7 @@ import { GenreType } from '../../models/enums/GenreType';
 import { StatusType } from '../../models/enums/StatusType';
 import { getEnumText } from '../../utils';
 import { SharedDataService } from '../../services/shared-data.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-anime-detail',
@@ -19,7 +20,7 @@ export class AnimeDetailComponent implements OnInit, OnDestroy {
 
   destroy$: Subject<void> = new Subject<void>;
 
-  constructor(private route: ActivatedRoute, private animeService: AnimeService, private router: Router, private sharedData: SharedDataService) { }
+  constructor(private route: ActivatedRoute, private animeService: AnimeService, private router: Router, private sharedData: SharedDataService, public authService: AuthService) { }
 
   ngOnInit() {
     this.animeService.getAnime(String(this.route.snapshot.paramMap.get('id')));

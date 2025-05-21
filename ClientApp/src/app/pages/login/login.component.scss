@@ -1,0 +1,108 @@
+.container {
+    background-color: #333;
+    min-height: 1000px;
+    padding-bottom: 50px;
+    width: 100%;
+
+    &__buttons {
+        display: flex;
+        justify-content: center;
+        padding: 20px 0px;
+
+        &--login {
+            height: 40px;
+            width: 200px;
+            font-size: larger;
+            border: none;
+            border-radius: 15px 0px 0px 15px;
+
+            &:enabled {
+                background-color: gray;
+            }
+
+            &:disabled {
+                background-color: red;
+                color: white;
+            }
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
+        &--register {
+            height: 40px;
+            width: 200px;
+            font-size: larger;
+            border: none;
+            border-radius: 0px 15px 15px 0px;
+
+            &:enabled {
+                background-color: gray;
+            }
+
+            &:disabled {
+                background-color: red;
+                color: white;
+            }
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+
+    &__anime-data {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 40px;
+
+        &--invalid {
+            font-size: large;
+        }
+
+        &--field {
+            padding-bottom: 15px;
+            width: 600px;
+
+            &_input {
+                width: 600px;
+                height: 30px;
+                font-size: large;
+            }
+
+            &_num-input {
+                width: 150px;
+                height: 30px;
+                font-size: large;
+            }
+        }
+
+        label {
+            color: white;
+            font-size: larger;
+            padding: 0px 15px 0px 0px;
+        }
+    }
+
+    .full-width {
+        width: 100%;
+    }
+
+}
+
+
+.toggle-button {
+    background-color: #222222;
+    border: none;
+    width: 150px;
+    height: 40px;
+    color: white;
+    font-size: larger;
+
+    &:hover {
+        cursor: pointer;
+        color: #f77062;
+    }
+}

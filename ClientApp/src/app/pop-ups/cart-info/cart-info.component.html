@@ -1,0 +1,33 @@
+<div class="container">
+
+    
+    <form [formGroup]="cartform" (ngSubmit)="onCartSubmit()" class="container__anime-data">
+        <div class="container__anime-data--field">
+            <label>Address:</label>
+            <mat-form-field class="full-width">
+                <input type="text" matInput formControlName="address">
+            </mat-form-field>
+        </div>
+        
+        <table>
+            <tr>
+                <th>Title</th>
+                <th>Count</th>
+                <th>Price</th>
+                <th></th>
+            </tr>
+            @for (item of cart().items; track $index) {
+                <tr>
+                    <td>{{item.productName}} </td>
+                    <td>{{item.count}}</td>
+                    <td>{{item.price}} Ft</td>
+                    
+                </tr>
+            }
+        </table>
+
+        <span class="cost">Total: {{cartService.getTotal()}} Ft</span>
+        
+        <button class="submit-button" type="submit" [disabled]="cartform.invalid">Submit</button>
+    </form>
+</div>

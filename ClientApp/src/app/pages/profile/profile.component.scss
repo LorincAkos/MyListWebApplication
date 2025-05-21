@@ -1,0 +1,63 @@
+.container {
+    background-color: #333;
+    min-height: 1000px;
+    padding-bottom: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.name {
+    color: white;
+    font-size: 38px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 70%;
+    color: white;
+
+    th {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #DDD;
+    }
+
+    td {
+        height: 30px;
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #DDD;
+    }
+
+    img {
+        height: 80px;
+    }
+
+    tr:hover {
+        background-color: #D6EEEE;
+    }
+
+}
+
+.order {
+    margin-top: 50px;
+    color: white;
+    font-size: 38px;
+}
+
+.logout {
+    background: rgb(0, 119, 255);
+    border: none;
+    border-radius: 20px;
+    width: 100px;
+    height: 40px;
+    text-align: center;
+    color: white;
+    font-size: larger;
+
+    &:hover {
+        background: rgb(0, 80, 170);
+        cursor: pointer;
+    }
+}

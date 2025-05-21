@@ -1,7 +1,9 @@
 <div class="container">
     <div class="title">
         <span>{{anime().title}}</span>
+        @if (authService.isAdmin()) {
             <a class="title__edit-button" (click)="goToEditPage()">Edit</a>
+        }
     </div>
     <div class="content">
         <div class="left-side">

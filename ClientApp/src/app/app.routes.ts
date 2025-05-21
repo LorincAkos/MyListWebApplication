@@ -9,6 +9,8 @@ import { MangaDetailComponent } from './pages/manga-detail/manga-detail.componen
 import { MangaEditComponent } from './pages/manga-edit/manga-edit.component';
 import { StorageComponent } from './pages/storage/storage.component';
 import { ShopComponent } from './pages/shop/shop.component';
+import { LoginComponent } from './pages/login/login.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 export const routes: Routes = [
     { 
@@ -55,6 +57,14 @@ export const routes: Routes = [
     { 
         path: 'shop',
         component: ShopComponent
+    },
+    { 
+        path: 'login',
+        component: LoginComponent
+    },
+    { 
+        path: 'profile',
+        component: ProfileComponent
     },
 
 ];

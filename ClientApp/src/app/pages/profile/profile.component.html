@@ -1,0 +1,26 @@
+<div class="container">
+    <span class="name">{{authService.getName()}}</span>
+    <button class="logout" (click)="logout()">Logout</button>
+
+
+    <span class="order">Orders</span>
+    <table>
+            <tr>
+                <th>Title</th>
+                <th>Price</th>
+                <th></th>
+                <th></th>
+            </tr>
+            @for (item of orderList(); track $index) {
+                <tr>
+                    <td> 
+                        @for (i of item.items; track $index) {
+                            <div>{{i.productName}}</div>
+                        }
+                    </td>
+                    <td>{{item.totalPrice}} Ft</td>
+                    
+                </tr>
+            }
+        </table>
+</div>

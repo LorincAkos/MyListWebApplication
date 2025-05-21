@@ -8,6 +8,7 @@ import { MangaSelectDto } from '../models/dtos/MangaSelectDto';
 import { MangaDto } from '../models/dtos/MangaDto';
 import { StorageDto } from '../models/dtos/StorageDto';
 import { BundleDto } from '../models/dtos/BundleDto';
+import { OrderDto } from '../models/dtos/OrderDto';
 
 @Injectable({
   providedIn: 'root'
@@ -115,5 +116,21 @@ export class HttpService {
   deleteBundle(id: string): Observable<BundleDto>{
     const params = new HttpParams().set('id', id);
     return this.http.delete<BundleDto>(this.backend + '/api/Bundle/Delete', {params});
+  }
+
+  userAuth(credentials: { username: string; password: string }){
+    return this.http.post<{ token: string }>(this.backend +`/api/User/login`, credentials)
+  }
+
+  userRegister(credentials: { username: string; password: string; email:string }) : Observable<string>{
+    return this.http.post(this.backend +`/api/User/register`, credentials,{ responseType: 'text' })
+  }
+
+  placeOrder(order: OrderDto): Observable<any> {
+    return this.http.post(this.backend + '/api/Order', order);
+  }
+
+  getMyOrders(): Observable<OrderDto[]> {
+    return this.http.get<OrderDto[]>(this.backend + '/api/Order');
   }
 }

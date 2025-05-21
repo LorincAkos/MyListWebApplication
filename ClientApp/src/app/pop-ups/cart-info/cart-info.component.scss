@@ -1,0 +1,88 @@
+ .container {
+     background-color: #333;
+     padding-bottom: 100px;
+     height: 100%;
+
+     &__anime-data {
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+         margin-top: 40px;
+
+         &--invalid {
+             font-size: large;
+         }
+
+         &--field {
+             padding-bottom: 15px;
+
+             &_input {
+                 height: 30px;
+                 font-size: large;
+             }
+
+         }
+
+         label {
+             color: white;
+             font-size: larger;
+             padding: 0px 15px 0px 0px;
+         }
+     }
+
+     .full-width {
+         width: 100%;
+     }
+
+ }
+
+ table {
+     border-collapse: collapse;
+     width: 70%;
+     color: white;
+
+     th {
+         padding: 8px;
+         text-align: left;
+         border-bottom: 1px solid #DDD;
+     }
+
+     td {
+         height: 30px;
+         padding: 8px;
+         text-align: left;
+         border-bottom: 1px solid #DDD;
+     }
+
+     img {
+         height: 80px;
+     }
+
+     tr:hover {
+         background-color: #D6EEEE;
+     }
+
+ }
+
+ .submit-button {
+
+     background: rgb(0, 119, 255);
+     border: none;
+     border-radius: 20px;
+     width: 100px;
+     height: 40px;
+     text-align: center;
+     margin-top: 30px;
+     color: white;
+     font-size: larger;
+
+     &:hover {
+         background: rgb(0, 80, 170);
+         cursor: pointer;
+     }
+ }
+
+ .cost {
+    color: white;
+    margin-top: 30px;
+ }
